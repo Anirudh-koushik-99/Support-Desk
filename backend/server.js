@@ -20,7 +20,7 @@ app.get('/', (req,res) => {
 
 //ROUTES
 app.use('/api/users', require('./routes/userRouter'))
-
+app.use('/api/tickets', require('./routes/ticketRoutes'))
 app.use(errorHandler)
 
 app.listen(PORT, () => console.log(`Server Started on port ${PORT}`))

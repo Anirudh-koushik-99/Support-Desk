@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 
-const ticketSchemea = mongoose.Schema({
+const ticketSchema = mongoose.Schema({
     user:{
         type: mongoose.Schema.Types.ObjectId,
         required: true,
@@ -18,13 +18,13 @@ const ticketSchemea = mongoose.Schema({
     status: {
         type: String,
         required: true,
-        enunm:['new', 'open', 'closed'],
+        enum:['new', 'open', 'closed'],
         default: 'new'
-    }
+    },
 }, 
 {
     timestamps: true,
 }
 )
 
-module.exports = mongoose.model('Ticket', ticketSchemea)
+module.exports = mongoose.model('Ticket', ticketSchema)

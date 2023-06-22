@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { getTicket, reset, closeTicket } from "../features/tickets/ticketSlice";
-import { getNotes, reset as notesReset } from "../features/notes/noteSlice";
+import { getNotes, reset as notesReset, createNote } from "../features/notes/noteSlice";
 import { toast } from "react-toastify";
 import Modal from 'react-modal'
 import {FaPlus} from 'react-icons/fa'
@@ -60,7 +60,7 @@ function Ticket() {
 
   const onNoteSubmit = (e) => {
     e.preventDefault()
-    console.log('Submit')
+    dispatch(createNote({noteText, ticketId}))
     closeModal()
   }
 
@@ -117,13 +117,15 @@ function Ticket() {
         </form>
       </Modal>
 
-      {notes.map((note) => 
-        <NoteItem key={note._id} note={note} />
+      {notes ? (
+        notes.map((note) => <NoteItem key={note._id} note={note} />)
+      ) : (
+        <Spinner />
       )}
 
       {ticket.status !== "closed" && (
         <button className="btn btn-block btn-danger" onClick={onTicketClose}>
-          Close
+          Close Ticket
         </button>
       )}
     </div>

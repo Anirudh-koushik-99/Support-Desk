@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { getTicket, reset, closeTicket } from "../features/tickets/ticketSlice";
-import { getNotes, reset as notesReset, createNote } from "../features/notes/noteSlice";
+import { getTicket, closeTicket } from "../features/tickets/ticketSlice";
+import { getNotes, createNote } from "../features/notes/noteSlice";
 import { toast } from "react-toastify";
 import Modal from 'react-modal'
 import {FaPlus} from 'react-icons/fa'
@@ -28,7 +28,7 @@ Modal.setAppElement('#root')
 function Ticket() {
   const [modalIsOpen, setModalIsOpen] = useState(false)
   const [noteText, setNoteText] = useState('')
-  const { ticket, isLoading, isError, isSuccess, message } = useSelector(
+  const { ticket, isLoading, isError, message } = useSelector(
     (state) => state.tickets
   );
   const { notes, isLoading: notesIsLoading } = useSelector(
@@ -36,7 +36,6 @@ function Ticket() {
   );
 
   const dispatch = useDispatch();
-  const params = useParams();
   const navigate = useNavigate();
 
   const { ticketId } = useParams();
